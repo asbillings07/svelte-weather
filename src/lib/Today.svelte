@@ -6,13 +6,12 @@
 	import { getWeatherIcon } from '$lib/Icons';
 
 	const { state } = getContext('weather');
-	const weatherData = $state.weather;
-	$: console.log($state);
-	const today = weatherData?.forecast;
+	const today = $state.weather?.forecast[0];
 	const weather = today?.weather;
+	$: console.log('Today', today, $state.location);
 </script>
 
-{#if $state.weather && Array.isArray($state.location)}
+{#if $state?.weather?.forecast}
 	<div class="today-container">
 		<div class="weather-temps">
 			<h2 class="today-max-degrees" data-testid="maxDegrees">
@@ -25,7 +24,7 @@
 		<div class="weather-forecast">
 			<div class="location" data-testid="location">
 				<Button iconDescription="current location" icon={LocationCurrent}>
-					{location}
+					{$state?.location ?? 'Not Available'}
 				</Button>
 			</div>
 			<img

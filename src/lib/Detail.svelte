@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { roundValue, getTimeOfDay } from './utils';
-	import { getContext } from 'svelte';
+	import { page } from '$app/stores';
 	import { getWeatherIcon } from '$lib/Icons';
-	const { state } = getContext('weather') as any;
-	$: console.log('Weather DATA', $state);
-	const details = $state.weatherData?.forecast as any;
+	export let forecast;
+	$: params = $page.params;
+	$: console.log('Weather Details', details, params);
+	$: details = forecast[params.slug];
 </script>
 
 <div class="detail-container">

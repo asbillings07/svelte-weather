@@ -5,8 +5,8 @@
 	const { state } = getContext('weather');
 </script>
 
-{#if $state.weather.forecast}
-	<Detail />
+{#if $state.weather?.forecast}
+	<Detail forecast={$state.weather?.forecast} />
 {:else}
 	<SkeletonPlaceholder />
 {/if}
