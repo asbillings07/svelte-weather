@@ -14,12 +14,10 @@
 	setContext('weather', { state, actions });
 
 	onMount(() => {
-		if (!$state.weather) {
-			actions.fetchWeather();
-		}
-		if (!$state.location) {
-			actions.getGeoLocation();
-			actions.fetchUserLocation($state.geoPosition.coords);
+		actions.getGeoLocation();
+		actions.fetchUserLocation($state.geoPosition.coords);
+		if (!$state.weather && $state.location?.city) {
+			actions.fetchWeather($state.location.city);
 		}
 	});
 

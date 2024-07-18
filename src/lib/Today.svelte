@@ -1,17 +1,24 @@
 <script>
 	import { SkeletonPlaceholder } from 'carbon-components-svelte';
 	import { Button } from 'carbon-components-svelte';
+	import { actions } from './store';
+	import { onMount } from 'svelte';
 	import LocationCurrent from 'carbon-icons-svelte/lib/LocationCurrent.svelte';
 	import { getContext } from 'svelte';
 	import { getWeatherIcon } from '$lib/Icons';
 
+	onMount(() => {
+		actions.fetchUserLocation();
+	});
+
 	const { state } = getContext('weather');
-	const today = $state.weather?.forecast[0];
-	const weather = today?.weather;
-	$: console.log('Today', today, $state.location);
+	$: today = Array.isArray($state.weather?.forecast) && $state?.weather?.forecast[0];
+	$: weather = today?.weather;
+	$: userLocation = $state.location?.city;
+	$: console.log('Today', today, weather, $state?.weather);
 </script>
 
-{#if $state?.weather?.forecast}
+{#if today && weather}
 	<div class="today-container">
 		<div class="weather-temps">
 			<h2 class="today-max-degrees" data-testid="maxDegrees">
@@ -24,7 +31,7 @@
 		<div class="weather-forecast">
 			<div class="location" data-testid="location">
 				<Button iconDescription="current location" icon={LocationCurrent}>
-					{$state?.location ?? 'Not Available'}
+					{userLocation || 'Not Available'}
 				</Button>
 			</div>
 			<img

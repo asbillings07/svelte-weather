@@ -17,8 +17,8 @@
 	<div class="main-content">
 		<div class="sub-main-content">
 			<div class="detail-temp-wrapper">
-				<h1 class="detail-max-degrees" data-testid="maxDegrees">{`${details.temp.maxTemp}`}</h1>
-				<h3 class="h3" data-testid="minDegrees">{`${details.temp.minTemp}`}</h3>
+				<h3 class="detail-max-degrees" data-testid="maxDegrees">{`${details.temp.maxTemp}`}</h3>
+				<h3 class="detail-min-degrees" data-testid="minDegrees">{`${details.temp.minTemp}`}</h3>
 			</div>
 			<div class="detail-status-wrapper">
 				<img
@@ -35,7 +35,7 @@
 		<div>
 			<div class="feels-like-wrapper" data-testid="feels-like-wrapper">
 				<div class="feels-like-header" data-testid="feels-like-header">
-					Feels Like:{' '}
+					<p>Feels Like:</p>
 					<p class="feels-like-temp" data-testid="feels-like-temp">
 						{details.feelsLike[getTimeOfDay()]}
 					</p>
@@ -64,9 +64,6 @@
 		padding: 20px;
 		margin: auto;
 		width: 100%;
-		@media (min-width: 725px) {
-			padding: 25px;
-		}
 	}
 
 	.date-wrapper {
@@ -77,19 +74,18 @@
 	.month-date {
 		font-size: 20px;
 		color: #646464;
-		@media (min-width: 725px) {
-			font-size: 3em;
-		}
 	}
 
 	.main-content {
 		display: flex;
 		padding-bottom: 30px;
-		justify-content: space-between;
+		justify-content: center;
 	}
 
 	.sub-main-content {
 		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.detail-temp-wrapper {
@@ -101,35 +97,26 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding-bottom: 30px;
+		padding: 30px;
 	}
 
 	.feels-like-temp {
-		font-size: 20px;
+		font-size: 2em;
 		margin: 5px 0;
-		@media (min-width: 725px) {
-			font-size: 10em;
-		}
 	}
 
 	.feels-like-header {
-		font-size: 20px;
+		font-size: 15px;
 	}
 
 	.detail-max-degrees {
 		font-size: 72px;
-		@media (min-width: 725px) {
-			font-size: 15em;
-		}
 	}
 
 	.detail-min-degrees {
 		font-size: 36px;
 		color: #646464;
 		align-self: center;
-		@media (min-width: 725px) {
-			font-size: 8em;
-		}
 	}
 
 	.detail-status-wrapper {
@@ -142,45 +129,77 @@
 		font-weight: lighter;
 		color: #646464;
 		align-self: center;
-		@media (min-width: 725px) {
-			font-size: 3em;
-		}
 	}
 
 	.icon {
 		height: 75px;
 		width: 75px;
-		@media (min-width: 725px) {
-			height: 32em;
-			width: 32em;
-		}
 	}
 
 	.detail-wrapper {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		font-size: 11px;
 	}
 
 	.humidity {
 		font-size: 17px;
 		margin-bottom: 3px;
-		@media (min-width: 725px) {
-			font-size: 3em;
-		}
 	}
 
 	.pressure {
 		font-size: 17px;
 		margin-bottom: 3px;
-		@media (min-width: 725px) {
-			font-size: 3em;
-		}
 	}
 
 	.wind {
 		font-size: 17px;
-		@media (min-width: 725px) {
+	}
+
+	@media (min-width: 725px) {
+		.feels-like-wrapper {
+			padding: 60px 30px 30px 30px;
+		}
+
+		.detail-container {
+			padding: 25px;
+		}
+
+		.month-date {
+			font-size: 3em;
+		}
+
+		.feels-like-temp {
+			font-size: 5em;
+		}
+
+		.detail-max-degrees {
+			font-size: 5em;
+		}
+
+		.detail-min-degrees {
+			font-size: 4em;
+		}
+
+		.status {
+			font-size: 3em;
+		}
+
+		.icon {
+			height: 25em;
+			width: 25em;
+		}
+
+		.humidity {
+			font-size: 3em;
+		}
+
+		.pressure {
+			font-size: 3em;
+		}
+
+		.wind {
 			font-size: 3em;
 		}
 	}
